@@ -2,7 +2,9 @@
     "name": "meesoverdevest/wp_on_laravel",
     "description": "A package that syncs WordPress posts, categories and tags with your laravel project.",
     "require": {
-        "cartalyst/tags": "^4.0"
+        "cartalyst/tags": "4.0.0",
+        "php": ">=5.6.4",
+        "illuminate/database": "5.4.*"
     },
     "authors": [
         {
