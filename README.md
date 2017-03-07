@@ -24,5 +24,19 @@ Run the following from your project folder:
 
 Replace $password and $email with your wished credentials to use in WordPress.
 
+### 4 Edit NGINX config
+
+To enable outer access to the public WordPress installation you have to add the following to your website's nginx config:
+```
+server {
+ ...
+ location /blog {
+   try_files $uri $uri/ /blog/index.php?$query_string;
+ }
+ ...
+}
+
+```
+
 ====== TODO ======
 1. Extend content retrieval methods
