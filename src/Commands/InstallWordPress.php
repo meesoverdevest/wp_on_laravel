@@ -62,7 +62,7 @@ class InstallWordPress extends Command
         }
         $this->WOLInstaller->WPDB_exists();
 
-        if( $this->WOLInstaller->installation($password, $mail) === true) {
+        if( $this->WOLInstaller->installation($auth[0], $auth[1]) === true) {
             $this->line("Installation of Wordpress is completed! \n We hope you enjoy this package! \nVisit " . url('/') . "/blog/wp-login.php to login using your given credentials: \n (Mail: ".$auth[1]." || Password: " .$auth[0] . " || Username: admin)\n");
         } else {
             $this->line("WordPress is already installed :D \n");
