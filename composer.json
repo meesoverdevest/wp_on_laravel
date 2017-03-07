@@ -17,6 +17,7 @@
             "meesoverdevest\\wp_on_laravel\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "prefer-stable" : true
 }
 
