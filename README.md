@@ -24,3 +24,5 @@ Run the following from your project folder:
 
 Replace $password and $email with your wished credentials to use in WordPress.
 
+====== TODO ======
+1. Extend content retrieval methods
