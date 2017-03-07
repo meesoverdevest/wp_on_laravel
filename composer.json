@@ -1,0 +1,20 @@
+{
+    "name": "meesoverdevest/wp_on_laravel",
+    "description": "A package that syncs WordPress posts, categories and tags with your laravel project.",
+    "require": {
+        "cartalyst/tags": "^4.0"
+    },
+    "authors": [
+        {
+            "name": "biertjesman",
+            "email": "mees@mefolio.nl"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+        ],
+        "psr-4": {
+            "meesoverdevest\\wp_on_laravel\\": "src/"
+        }
+    },
+}
