@@ -43,8 +43,14 @@ class WOLInstaller {
     }
     // Installation exists
     return false;
+  }
 
+  public function checkSiteUrl() {
+    // wp update siteurl
+    $this->updateWPUrl();
 
+    // Set right permalink structure for 'read more' link generation
+    $this->checkPermalinkStructure();
   }
   
   public function WPCLI_exists() {

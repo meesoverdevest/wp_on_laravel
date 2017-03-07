@@ -65,6 +65,7 @@ class InstallWordPress extends Command
         if( $this->WOLInstaller->installation($auth[0], $auth[1]) === true) {
             $this->line("Installation of Wordpress is completed! \n We hope you enjoy this package! \nVisit " . url('/') . "/blog/wp-login.php to login using your given credentials: \n (Mail: ".$auth[1]." || Password: " .$auth[0] . " || Username: admin)\n");
         } else {
+            $this->WOLInstaller->checkSiteUrl();
             $this->line("WordPress is already installed :D \n");
         }
 
