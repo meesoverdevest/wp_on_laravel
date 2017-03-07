@@ -50,7 +50,7 @@ class WPAPI {
 
   protected function syncPost($data)
 	{
-    $found = Post::where('wp_id', $data->id)->first();
+    $found = WPPost::where('wp_id', $data->id)->first();
 
     if (! $found) {
       return $this->createPost($data);
@@ -63,7 +63,7 @@ class WPAPI {
 
 	protected function syncCategory($data)
 	{
-    $found = Category::where('wp_id', $data->id)->first();
+    $found = WPCategory::where('wp_id', $data->id)->first();
 
     if (! $found) {
       return $this->createCategory($data);
@@ -81,7 +81,7 @@ class WPAPI {
 
 	protected function createPost($data)
 	{
-    $post = new Post();
+    $post = new WPPost();
     $post->id = $data->id;
     $post->wp_id = $data->id;
     $post->user_id = $this->getAuthor($data->_embedded->author);
@@ -153,7 +153,7 @@ class WPAPI {
 
 	protected function createCategory($data)
 	{
-    $category = new Category();
+    $category = new WPCategory();
     $category->id = $data->id;
     $category->wp_id = $data->id;
     $category->name = $data->name;
@@ -166,7 +166,7 @@ class WPAPI {
     return $category;
 	}
 
-	protected function updateCategory(Category $found, $data)
+	protected function updateCategory(WPCategory $found, $data)
 	{
     $found->id = $data->id;
     $found->wp_id = $data->id;
