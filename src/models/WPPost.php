@@ -1,7 +1,7 @@
 <?php 
 
 namespace meesoverdevest\wp_on_laravel\models;
-require __DIR__ . '/../../vendor/autoload.php';
+// require __DIR__ . '/../../vendor/autoload.php';
 
 use Cartalyst\Tags\TaggableTrait;
 use Cartalyst\Tags\TaggableInterface;
@@ -21,7 +21,7 @@ class WPPost extends Model
     ];
 
     public function categories() {
-    	return $this->belongsToMany(Category::class, 'wp_post_category', 'post_id', 'category_id');
+    	return $this->belongsToMany(WPCategory::class, 'wp_post_category', 'post_id', 'category_id');
     }
 }
 

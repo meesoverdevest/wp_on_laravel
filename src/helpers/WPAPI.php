@@ -115,7 +115,7 @@ class WPAPI {
     return $post;
 	}
 
-	protected function updatePost(Post $found, $data)
+	protected function updatePost(WPPost $found, $data)
 	{
     $found->id = $data->id;
     $found->wp_id = $data->id;
@@ -194,7 +194,7 @@ class WPAPI {
 		return $data[0]->id;
 	}
 
-	private function syncTags(Post $post, $tags)
+	private function syncTags(WPPost $post, $tags)
 	{
     $tags = collect($tags)->collapse()->where('taxonomy', 'post_tag')->pluck('name')->toArray();
     if (count($tags) > 0) {
@@ -202,7 +202,7 @@ class WPAPI {
     }
 	}
 
-  private function alterExcerptLink( Post $post ) {
+  private function alterExcerptLink( WPPost $post ) {
     // Check whether read-more link exists in excerpt
     if( strpos( $post->excerpt, '<a href="'. url('/') . '/blog/' ) !== false ){
 

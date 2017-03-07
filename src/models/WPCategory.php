@@ -11,15 +11,15 @@ class WPCategory extends Model
   ];
 
   public function posts() {
-  	return $this->belongsToMany(Post::class, 'wp_post_category', 'category_id', 'post_id');
+  	return $this->belongsToMany(WPPost::class, 'wp_post_category', 'category_id', 'post_id');
   }
 
   public function parent() {
-  	return $this->belongsTo(Category::class, 'parent');
+  	return $this->belongsTo(WPCategory::class, 'parent');
   }
 
   public function children() {
-  	return $this->hasMany(Category::class, 'parent');
+  	return $this->hasMany(WPCategory::class, 'parent');
   }
 }
 
