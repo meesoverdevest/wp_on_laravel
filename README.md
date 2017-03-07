@@ -1,6 +1,9 @@
 
 ## WP-on-Laravel
 
+A Laravel Package which makes use of WordPress to easily manage blog content, but also makes it possible to access all WordPress' posts, categories and tags through Eloquent Models.
+____
+
 ### Requirements
 - WP CLI globally installed
 - A valid ```APP_URL``` in your ```.env```-file
