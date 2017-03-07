@@ -16,6 +16,7 @@
         "psr-4": {
             "meesoverdevest\\wp_on_laravel\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
 
