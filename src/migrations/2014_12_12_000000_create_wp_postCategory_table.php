@@ -43,3 +43,4 @@ class CreatePostCategoryTable extends Migration
         Schema::dropIfExists('post_category');
     }
 }
+

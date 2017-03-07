@@ -5,3 +5,4 @@ Route::group(['namespace' => 'meesoverdevest\wp_on_laravel\controllers'], functi
 	Route::get('wp/index', 'WPSyncController@index');
 	Route::get('wp/sync', 'WPSyncController@sync');
 });
+

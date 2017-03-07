@@ -37,3 +37,4 @@ class WPServiceProvider extends ServiceProvider
         $this->app->make('meesoverdevest\wp_on_laravel\controllers\WPSyncController');
     }
 }
+

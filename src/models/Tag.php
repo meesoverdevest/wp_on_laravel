@@ -22,3 +22,4 @@ class Tag extends Model
   	return Post::whereTag($this->slug)->orderBy('created_at', 'desc')->get();
   }
 }
+

@@ -22,3 +22,4 @@ class WPCategory extends Model
   	return $this->hasMany(Category::class, 'parent');
   }
 }
+

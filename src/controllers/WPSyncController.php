@@ -33,3 +33,4 @@ class WPSyncController extends Controller
   }
 
 }
+

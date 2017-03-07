@@ -70,3 +70,4 @@ class InstallWordPress extends Command
 
     }
 }
+

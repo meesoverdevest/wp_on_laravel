@@ -24,3 +24,4 @@ class WPPost extends Model
     	return $this->belongsToMany(Category::class, 'wp_post_category', 'post_id', 'category_id');
     }
 }
+
