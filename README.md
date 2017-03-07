@@ -35,8 +35,10 @@ server {
  }
  ...
 }
-
 ```
 
+Don't forget to run ```sudo service nginx restart```
+
 ====== TODO ======
+
 1. Extend content retrieval methods
