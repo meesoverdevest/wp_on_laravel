@@ -30,9 +30,17 @@ To enable outer access to the public WordPress installation you have to add the 
 ```
 server {
  ...
- location /blog {
-   try_files $uri $uri/ /blog/index.php?$query_string;
- }
+  location /blog {
+   return 301 /blog/wp-login.php;
+  }
+
+  location /blog/(wp-admin|wp-json) {
+    try_files $uri $uri/ /blog/index.php?$query_string;
+	}	
+
+	location / {
+		// standard settings
+	}
  ...
 }
 ```
