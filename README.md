@@ -18,6 +18,7 @@ Add the service provider in ```config/app.php```:
    meesoverdevest\wp_on_laravel\WPServiceProvider::class
  ];
 ```
+
 ### 3 Run the installer
 Run the following from your project folder:
 ```php artisan wol:install $password $email```
@@ -83,5 +84,6 @@ Use them freely inside your project. You can use the models like:
 
 
 ====== TODO ======
+
 
 1. Extend content retrieval methods
