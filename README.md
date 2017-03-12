@@ -37,16 +37,16 @@ server {
 
   location /blog/(wp-admin|wp-json) {
     try_files $uri $uri/ /blog/index.php?$query_string;
-	}	
+  }	
 
-	location / {
-		// standard settings
-	}
+  location / {
+    // standard settings
+  }
  ...
 }
 ```
 
-Don't forget to run ```sudo service nginx restart```
+Don't forget to run ```(sudo) service nginx restart```
 
 ### 5 Syncing Wordpress Posts, Categories and Tags 
 ```php
@@ -85,5 +85,6 @@ Use them freely inside your project. You can use the models like:
 
 ====== TODO ======
 
-
 1. Extend content retrieval methods
+2. Create php artisan sync command
+3. Add apache config example
