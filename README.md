@@ -25,7 +25,12 @@ Run the following from your project folder:
 
 Replace $password and $email with your wished credentials to use in WordPress.
 
-### 4 Edit NGINX config
+### 4 Run migration
+After running the installation command (```php artisan wol:install $password $email```)
+
+Run ```php artisan migrate``` to migrate the new migrations
+
+### 5 Edit NGINX config
 
 To enable outer access to the public WordPress installation you have to add the following to your website's nginx config:
 ```
@@ -48,7 +53,7 @@ server {
 
 Don't forget to run ```sudo service nginx restart```
 
-### 5 Syncing Wordpress Posts, Categories and Tags 
+### 6 Syncing Wordpress Posts, Categories and Tags 
 ```php
  use meesoverdevest\wp_on_laravel\helpers\WPAPI;
  
@@ -58,7 +63,7 @@ Don't forget to run ```sudo service nginx restart```
  }
 ```
 
-### 6 Using Wordpress Posts, Categories and Tags 
+### 7 Using Wordpress Posts, Categories and Tags 
 
 Use them freely inside your project. You can use the models like:
 ```php
