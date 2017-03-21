@@ -36,7 +36,7 @@ To enable outer access to the public WordPress installation you have to add the 
 ```
 server {
  ...
-  location /blog {
+  location = /blog {
    return 301 /blog/wp-login.php;
   }
 
