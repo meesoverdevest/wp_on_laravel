@@ -90,6 +90,7 @@ Use them freely inside your project. You can use the models like:
 
 ====== TODO ======
 
-1. Extend content retrieval methods
-2. Create php artisan sync command
-3. Add apache config example
+1. Add wp-relinquish to automate syncing after a post is updated
+2. Extend content retrieval methods
+3. Create php artisan sync command
+4. Add apache config example
