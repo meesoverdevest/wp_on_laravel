@@ -25,12 +25,18 @@ Run the following from your project folder:
 
 Replace $password and $email with your wished credentials to use in WordPress.
 
-### 4 Run migration
+gitignore public/blog if you don't want you content and uploads to be public.
+
+### 4 Install Cartalyst Tags
+
+Our package depends on Cartalyst Tags, which installs automatically as dependency. To be able to use Cartalyst Tags with WP_on_Laravel, you have to run their migrations as well. Doing so: ``` $ php artisan vendor:publish --provider="Cartalyst\Tags\TagsServiceProvider" --tag="migrations" ``` or without publishing ``` php artisan migrate --path=vendor/cartalyst/tags/resources/migrations ```
+
+### 5 Run migration
 After running the installation command (```php artisan wol:install $password $email```)
 
 Run ```php artisan migrate``` to migrate the new migrations
 
-### 5 Edit NGINX config
+### 6 Edit NGINX config
 
 To enable outer access to the public WordPress installation you have to add the following to your website's nginx config:
 ```
@@ -40,9 +46,13 @@ server {
    return 301 /blog/wp-login.php;
   }
 
-  location /blog/(wp-admin|wp-json) {
+  location /blog/wp-json {
     try_files $uri $uri/ /blog/index.php?$query_string;
   }	
+
+  location /blog/wp-admin {
+    try_files $uri $uri/ /blog/index.php?$query_string;
+  } 
 
   location / {
     // standard settings
@@ -53,7 +63,7 @@ server {
 
 Don't forget to run ```(sudo) service nginx restart```
 
-### 6 Syncing Wordpress Posts, Categories and Tags 
+### 7 Syncing Wordpress Posts, Categories and Tags 
 ```php
  use meesoverdevest\wp_on_laravel\helpers\WPAPI;
  
@@ -63,7 +73,7 @@ Don't forget to run ```(sudo) service nginx restart```
  }
 ```
 
-### 7 Using Wordpress Posts, Categories and Tags 
+### 8 Using Wordpress Posts, Categories and Tags 
 
 Use them freely inside your project. You can use the models like:
 ```php
