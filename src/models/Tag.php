@@ -19,7 +19,7 @@ class Tag extends Model
   protected $fillable = ['namespace', 'name', 'slug', 'count'];
 
   public function posts() {
-  	return Post::whereTag($this->slug)->orderBy('created_at', 'desc')->get();
+  	return WPPost::whereTag($this->slug)->orderBy('created_at', 'desc')->get();
   }
 }
 
