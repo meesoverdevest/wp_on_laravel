@@ -18,7 +18,7 @@ class WPAPI {
 
   protected function syncCategories($page = 1) {
   	$categories = collect($this->getJson($this->url . 'categories?page=' . $page));
-		// dd($categories);
+		
   	// Sync categories
   	foreach ($categories as $category) {
       $this->syncCategory($category);
@@ -207,8 +207,9 @@ class WPAPI {
     if( strpos( $post->excerpt, '<a href="'. url('/') . '/blog/' ) !== false ){
 
       $new_excerpt = $this->replace_between($post->excerpt, '<a href="', '" class="more-link"', url('/') . '/posts/' . $post->id);
+      $altered_excerpt = $this->replace_between($new_excerpt, 'class="more-link">', '<span class="screen-reader-text">', 'Lees meer');
 
-      $post->excerpt = $new_excerpt;
+      $post->excerpt = $altered_excerpt;
       $post->save();
     }
 
