@@ -14,6 +14,8 @@ class WPAPI {
     $this->buildUrl();
   	$this->syncCategories();
   	$this->syncPosts();
+
+    return true;
   }
 
   protected function syncCategories($page = 1) {
@@ -39,6 +41,8 @@ class WPAPI {
 
     if(count($posts) > 0){
     	$this->syncPosts($page + 1);
+    } else {
+      return true;
     }
   }
 

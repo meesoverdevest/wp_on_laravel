@@ -60,6 +60,8 @@ class InstallWordPress extends Command
             $this->error("A global installation of WP CLI is required for this package! \n Visit http://wp-cli.org/#installing for installation instructions for WP CLI.");
             die();
         }
+
+        // Check DB Existence
         $this->WOLInstaller->WPDB_exists();
 
         if( $this->WOLInstaller->installation($auth[0], $auth[1]) === true) {

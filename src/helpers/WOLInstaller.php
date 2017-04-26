@@ -35,8 +35,14 @@ class WOLInstaller {
       // wp update siteurl
       $this->updateWPUrl();
 
+      // Add WP-Relinquish webhook
+      // $this->installPlugin('https://github.com/wponrails/wp-relinquish/archive/master.zip');
+
       // Set right permalink structure for 'read more' link generation
       $this->checkPermalinkStructure();
+
+      // Database sync hooks to wp-includes/functions.php
+      $this->appendHooksToFuntions();
       
       return true;
       
@@ -157,6 +163,46 @@ class WOLInstaller {
         echo "Wordpress Option field: ".$field." updated \n";
       }  
     }
+  }
+
+  private function installPlugin($plugin) {
+    $command = "cd ". $this->wpDir ." && wp plugin install " . $plugin . " --activate";
+
+    if( $this->utils->executeCommand($command) !== true ) {
+      // Install WP CLI
+      echo "Wordpress Plugin: ".$plugin." installation failed";
+    } else {
+      echo "Wordpress Plugin: ".$plugin." succesfully installed \n";
+    }  
+  }
+
+  private function appendHooksToFuntions() {
+    $string = 'function publish_post_webhook($post_ID) {
+  
+      $url = "http://wp.laravel/wp/sync";
+      $data = array("wp_id" => $post_ID);
+
+      // use key "http" even if you send the request to https://...
+      $options = array(
+          "http" => array(
+              "header"  => "Content-type: application/x-www-form-urlencoded\r\n",
+              "method"  => "POST",
+              "content" => http_build_query($data)
+          )
+      );
+      $context  = stream_context_create($options);
+      $result = file_get_contents($url, false, $context);
+      if ($result === FALSE) { /* Handle error */ }
+
+      // Code to send a tweet with post info
+
+      return;
+    }
+    add_action("publish_post", "publish_post_webhook");
+    add_action("save_post", "publish_post_webhook");';
+
+
+    file_put_contents(public_path('blog/wp-includes/functions.php'), $string, FILE_APPEND);
   }
 	
 }
