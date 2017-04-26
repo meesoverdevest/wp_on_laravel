@@ -42,7 +42,7 @@ class WOLInstaller {
       $this->checkPermalinkStructure();
 
       // Database sync hooks to wp-includes/functions.php
-      $this->appendHooksToFuntions();
+      $this->appendHooksToFunctions();
       
       return true;
       
@@ -176,10 +176,10 @@ class WOLInstaller {
     }  
   }
 
-  private function appendHooksToFuntions() {
+  private function appendHooksToFunctions() {
     $string = 'function publish_post_webhook($post_ID) {
   
-      $url = "http://wp.laravel/wp/sync";
+      $url = "'. env('APP_URL') .'/wp/sync";
       $data = array("wp_id" => $post_ID);
 
       // use key "http" even if you send the request to https://...
