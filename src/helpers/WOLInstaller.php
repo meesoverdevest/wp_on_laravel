@@ -123,7 +123,7 @@ class WOLInstaller {
 
   private function downloadWP() {
 
-    $command ="cd ". $this->wpDir ." && wp core download";
+    $command ="cd ". $this->wpDir ." && wp core download --version=4.8.1 --force";
     if( $this->utils->executeCommand($command) !== true ) {
       // Download WP
       echo "Download Failed \n";
