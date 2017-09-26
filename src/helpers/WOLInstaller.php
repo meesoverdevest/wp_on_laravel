@@ -35,9 +35,6 @@ class WOLInstaller {
       // wp update siteurl
       $this->updateWPUrl();
 
-      // Add WP-Relinquish webhook
-      // $this->installPlugin('https://github.com/wponrails/wp-relinquish/archive/master.zip');
-
       // Set right permalink structure for 'read more' link generation
       $this->checkPermalinkStructure();
 

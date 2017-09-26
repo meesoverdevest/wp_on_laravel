@@ -100,7 +100,6 @@ Use them freely inside your project. You can use the models like:
 
 ====== TODO ======
 
-1. Add wp-relinquish to automate syncing after a post is updated
+1. Add Delete Method and Webhooks to Package and functions.php in Wordpress installation
 2. Extend content retrieval methods
-3. Create php artisan sync command
-4. Add apache config example
+3. Normalize the codebase
