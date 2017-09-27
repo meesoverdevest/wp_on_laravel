@@ -3,6 +3,7 @@
 namespace meesoverdevest\wp_on_laravel;
 
 use Illuminate\Support\ServiceProvider;
+use meesoverdevest\wp_on_laravel\Commands\InstallWordPress;
 
 class WPServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,12 @@ class WPServiceProvider extends ServiceProvider
         // http://laraveldaily.com/how-to-create-a-laravel-5-package-in-10-easy-steps/
         // https://laravel.com/docs/5.4/packages
         $this->loadMigrationsFrom(__DIR__.'/migrations');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallWordPress::class,
+            ]);
+        }
     }
 
     /**
