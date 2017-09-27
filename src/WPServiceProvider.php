@@ -40,7 +40,7 @@ class WPServiceProvider extends ServiceProvider
     public function register()
     {
         include __DIR__.'/routes.php';
-        $this->commands($this->commands);
+        // $this->commands($this->commands);
         $this->app->make('meesoverdevest\wp_on_laravel\controllers\WPSyncController');
     }
 }
