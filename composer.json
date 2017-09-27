@@ -4,8 +4,8 @@
     "keywords": ["WordPress", "Laravel", "Package"],
     "license": "MIT",
     "require": {
-        "cartalyst/tags": "4.0.0",
-        "php": ">=5.6.4",
+        "cartalyst/tags": "5.0.*",
+        "php": ">=7.0.0",
         "illuminate/database": "*"
     },
     "authors": [
