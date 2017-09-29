@@ -19,6 +19,13 @@
             "meesoverdevest\\wp_on_laravel\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "meesoverdevest\\wp_on_laravel\\WPServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable" : true
 }
