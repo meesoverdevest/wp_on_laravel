@@ -18,5 +18,12 @@ class WPSyncController extends Controller
   	return response()->json(['success' => $request->get('wp_id')], 201);
   }
 
+  public function delete(Request $request) {
+  	$wp = new WPAPI();
+  	$wp->deleteItems($request->get('wp_id'), $request->get('type'));
+
+  	return response()->json(['success' => $request->get('wp_id')], 201);
+  }
+
 }
 

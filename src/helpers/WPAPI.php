@@ -18,6 +18,11 @@ class WPAPI {
     return true;
   }
 
+  public function deleteItems($wp_id, $type) {
+    // Call WPAPIDelete
+    // Delete given item
+  }
+
   protected function syncCategories($page = 1) {
   	$categories = collect($this->getJson($this->url . 'categories?page=' . $page));
 		

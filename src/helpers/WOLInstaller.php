@@ -174,29 +174,8 @@ class WOLInstaller {
   }
 
   private function appendHooksToFunctions() {
-    $string = 'function publish_post_webhook($post_ID) {
-  
-      $url = "'. env('APP_URL') .'/wp/sync";
-      $data = array("wp_id" => $post_ID);
+    $string = file_get_contents(__DIR__ . '/WPHooks.php');
 
-      // use key "http" even if you send the request to https://...
-      $options = array(
-          "http" => array(
-              "header"  => "Content-type: application/x-www-form-urlencoded\r\n",
-              "method"  => "POST",
-              "content" => http_build_query($data)
-          )
-      );
-      $context  = stream_context_create($options);
-      $result = file_get_contents($url, false, $context);
-      if ($result === FALSE) { /* Handle error */ }
-
-      // Code to send a tweet with post info
-
-      return;
-    }
-    add_action("publish_post", "publish_post_webhook");
-    add_action("save_post", "publish_post_webhook");';
 
 
     file_put_contents(public_path('blog/wp-includes/functions.php'), $string, FILE_APPEND);
