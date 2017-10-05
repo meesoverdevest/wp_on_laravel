@@ -4,10 +4,13 @@ namespace meesoverdevest\wp_on_laravel\helpers;
 
 use meesoverdevest\wp_on_laravel\models\WPPost;
 use meesoverdevest\wp_on_laravel\models\WPCategory;
+use meesoverdevest\wp_on_laravel\helpers\WPAPIDelete;
 use Carbon\Carbon;
 
 class WPAPI {
 	protected $url = '';
+  private $totalPages = 0;
+  private $currentPage = 0;
 	
 	public function syncWP()
   {
@@ -18,42 +21,65 @@ class WPAPI {
     return true;
   }
 
-  public function deleteItems($wp_id, $type) {
-    // Call WPAPIDelete
+  public function deleteItems($info, $type) {
+    $deleteAPI = new WPAPIDelete($type);
+    
+    switch ($type) {
+      case 'category':
+        $deleteAPI->deleteCategory($info['wp_id']);
+        break;
+      case 'tag':
+        # code...
+        break;
+      case 'post':
+        # code...
+        break;
+      default:
+        # code...
+        break;
+    }
     // Delete given item
   }
 
   protected function syncCategories($page = 1) {
-  	$categories = collect($this->getJson($this->url . 'categories?page=' . $page));
-		
-  	// Sync categories
-  	foreach ($categories as $category) {
-      $this->syncCategory($category);
-    }
+    $this->currentPage = $page;
 
-    if(count($categories) > 0){
+    if( ! $this->isFinished() ) {
+      $categories = collect($this->getJson($this->url . 'categories?page=' . $page));		
+    	
+      // Sync categories
+    	foreach ($categories as $category) {
+        $this->syncCategory($category);
+      }
+    } else {
     	$this->syncCategories($page + 1);
-    }
+    }    
   }
 
   protected function syncPosts($page = 1) {
-  	$posts = collect($this->getJson($this->url . 'posts/?_embed&filter[orderby]=modified&page=' . $page));
+    $this->currentPage = $page;
 
-  	// Sync posts
-  	foreach ($posts as $post) {
-      $this->syncPost($post);
-    }
+    if( ! $this->isFinished() ) {
+    	$posts = collect($this->getJson($this->url . 'posts/?_embed&filter[orderby]=modified&page=' . $page));
 
-    if(count($posts) > 0){
-    	$this->syncPosts($page + 1);
+    	// Sync posts
+    	foreach ($posts as $post) {
+        $this->syncPost($post);
+      }
     } else {
-      return true;
+      $this->syncPosts($page + 1);
     }
   }
 
   protected function getJson($url)
   {
     $response = file_get_contents($url, false);
+
+    $matches = preg_grep('/X-WP-TotalPages:/i', $http_response_header);
+    $pageHeader = end($matches);
+
+    $this->totalPages = str_replace("X-WP-TotalPages: ", "", $pageHeader);
+
     return json_decode( $response );
   }
 
@@ -242,5 +268,17 @@ class WPAPI {
     $this->url = $base . $blog;
     
     return;
+  }
+
+  private function isFinished() {
+    if( $this->totalPages == 0 ) {
+      return false;
+    } else {
+      if( $this->currentPage > $this->totalPages ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 }
