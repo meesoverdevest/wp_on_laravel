@@ -241,7 +241,7 @@ class WPAPI {
     // Check whether read-more link exists in excerpt
     if( strpos( $post->excerpt, '<a href="'. url('/') . '/blog/' ) !== false ){
 
-      $new_excerpt = $this->replace_between($post->excerpt, '<a href="', '" class="more-link"', url('/') . '/posts/' . $post->id);
+      $new_excerpt = $this->replace_between($post->excerpt, '<a href="', '" class="more-link"', url('/') . '/posts/' . $post->slug);
       $altered_excerpt = $this->replace_between($new_excerpt, 'class="more-link">', '<span class="screen-reader-text">', 'Lees meer');
 
       $post->excerpt = $altered_excerpt;
